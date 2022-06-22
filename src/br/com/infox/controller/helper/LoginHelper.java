@@ -6,6 +6,9 @@
 package br.com.infox.controller.helper;
 
 import br.com.infox.view.TelaLogin;
+import br.com.infox.DAO.ModuloConexao;
+import br.com.infox.model.Usuario;
+import java.sql.*;
 
 /**
  *
@@ -14,8 +17,45 @@ import br.com.infox.view.TelaLogin;
 public class LoginHelper {
 
     private final TelaLogin view;
-
-    public LoginHelper(TelaLogin view) {
+    
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
+    public LoginHelper(TelaLogin view) throws SQLException {
         this.view = view;
+        this.conexao = ModuloConexao.getConnection(); 
+    }
+    
+    public void verificaConexaoComDatabase(){
+        if (this.conexao != null){
+            this.view.getJlbDatabase().setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/database-connected-48.png")));
+       
+        }else{
+            this.view.getJlbDatabase().setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/database-desconnected-48.png")));
+
+        }
+    }
+    
+    public Usuario obterDadosDaTelaDeLogin() {
+        String login = view.getJtfLogin().getText();
+        String senha = view.getJpfSenha().getText();
+       
+        Usuario autentica = new Usuario(login, senha);
+        return autentica;
+    }
+
+    public void setarDadosNaTelaDeLogin(Usuario dados) {
+        String login = dados.getLogin();
+        String senha = dados.getSenha();
+
+        view.getJtfLogin().setText(login);
+        view.getJpfSenha().setText(senha);
+
+    }
+
+    public void limparTela() {
+        view.getJtfLogin().setText("");
+        view.getJpfSenha().setText("");
     }
 }

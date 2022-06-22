@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class ModuloConexao {
 
-    public static Connection conector() {
+    public static Connection getConnection() {;
         Connection conexao;
         try {
             conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbinfox", "root", "root");
