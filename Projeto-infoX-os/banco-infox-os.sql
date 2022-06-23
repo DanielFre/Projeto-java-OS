@@ -12,6 +12,8 @@ create table if not exists tbusuarios (
 ) default charset = utf8mb4;
 
 insert into tbusuarios(usuario, login, senha, nivelacesso) values ('Daniel','admin', 'admin','admin');
+insert into tbusuarios(usuario, login, senha, nivelacesso) values ('Carlos','carlos', 'carlos','normal');
+
 select * from tbusuarios;
 desc tbusuarios;
 #drop table tbusuarios;
@@ -49,4 +51,11 @@ insert into tbos (equipamento, defeito, servico, tecnico, valor, id_cliente)
 	values ('celular','não liga','trocar bateria','Daniel','150','1');
 
 select * from tbos;
+
+select login, senha from tbusuarios where login = 'admin' and senha = 'admin';
+
+select nivelacesso from tbusuarios where login = 'admin' and senha = 'admin';
+
+
+
     

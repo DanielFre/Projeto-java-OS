@@ -39,8 +39,9 @@ public class LoginHelper {
     
     public Usuario obterDadosDaTelaDeLogin() {
         String login = view.getJtfLogin().getText();
-        String senha = view.getJpfSenha().getText();
-       
+        String senha = new String(view.getJpfSenha().getPassword());
+//      String senha = view.getJpfSenha().getText();//old
+
         Usuario autentica = new Usuario(login, senha);
         return autentica;
     }

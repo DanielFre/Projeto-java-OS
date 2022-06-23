@@ -18,21 +18,22 @@ import java.sql.*;
  * @author daniel.frey
  */
 public class LoginController {
-    private final TelaLogin view;
-    private LoginHelper helper;
 
-    public LoginController(TelaLogin view) {
+    private final TelaLogin view;
+    private final LoginHelper helper;
+
+    public LoginController(TelaLogin view) throws SQLException {
         this.view = view;
         this.helper = new LoginHelper(view);
     }
-    
-    public void iniciaSistema(){
+
+    public void iniciaSistema() {
         this.helper.verificaConexaoComDatabase();
     }
-    
-    public void entrarNoSistema() throws SQLException{
-         // pegar o usuario da view
-        Usuario usuarioEsenha = helper.obterDadosDaTelaDeLogin();
+
+    public void entrarNoSistema() throws SQLException {
+        // pegar o usuario da view
+        Usuario usuarioEsenha = this.helper.obterDadosDaTelaDeLogin();
 
         //pesquisar usuario no banco
         Connection conexao = new ModuloConexao().getConnection();
@@ -41,12 +42,30 @@ public class LoginController {
         boolean existeUsuarioAutenticado = usuarioDAO.verificaSeExisteUsuarioESenhaNoBanco(usuarioEsenha);
 
         if (existeUsuarioAutenticado) { // se usuario existe direciona para o menu principal
+
+            String perfil = usuarioDAO.buscaPerfilAcesso(usuarioEsenha);
             MenuPrincipal menu = new MenuPrincipal();
+
+            switch (perfil) {
+                case "admin":
+//                    System.out.println("perfil: admin");
+                    menu.MenuCadastroUsuarios.setEnabled(true);
+                    menu.MenuRelatorio.setEnabled(true);
+                    break;
+                case "normal":
+//                    System.out.println("perfil: normal");
+                    break;
+                case "especial":
+//                    System.out.println("perfil: especial");
+                    break;
+                default:
+                    break;
+            }
             menu.setVisible(true);
             this.view.dispose();
         } else {        //  senão mostrar alerta informando "usuario ou senha inválidos"
-
             view.exibeMensagem("Usuário e/ou senha inválidos!");
+            this.helper.limparTela();
         }
     }
 }

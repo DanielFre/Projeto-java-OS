@@ -18,9 +18,7 @@ public class Usuario {
     private String nomeUsuario;
     private String telefone;
 
-    public Usuario(String login, String senha, String nivelAcesso) {
-        this.login = login;
-        this.senha = senha;
+    public Usuario(String nivelAcesso) {
         this.nivelAcesso = nivelAcesso;
     }
 
@@ -28,6 +26,9 @@ public class Usuario {
         this.login = login;
         this.senha = senha;
     }
+
+    public Usuario() {
+   }
 
     public int getId() {
         return id;

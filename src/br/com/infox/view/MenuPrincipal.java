@@ -5,17 +5,24 @@
  */
 package br.com.infox.view;
 
+import br.com.infox.controller.MenuPrincipalController;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 /**
  *
  * @author daniel.frey
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+ private MenuPrincipalController controller;
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
+//        setExtendedState(MAXIMIZED_BOTH);
+        this.controller = new MenuPrincipalController(this);
     }
 
     /**
@@ -27,33 +34,147 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        DesktopPanel = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
+        lbTextoUsuario = new javax.swing.JLabel();
+        lbTextoData = new javax.swing.JLabel();
+        MenuBar = new javax.swing.JMenuBar();
+        MenuCadastro = new javax.swing.JMenu();
+        MenuCadastroClientes = new javax.swing.JMenuItem();
+        MenuCadastroOS = new javax.swing.JMenuItem();
+        MenuCadastroUsuarios = new javax.swing.JMenuItem();
+        MenuRelatorio = new javax.swing.JMenu();
+        MenuRelatorioServicos = new javax.swing.JMenuItem();
+        MenuAjuda = new javax.swing.JMenu();
+        MenuAjudaSobre = new javax.swing.JMenuItem();
+        MenuOpcoes = new javax.swing.JMenu();
+        MenuOpcoesSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de OS");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        javax.swing.GroupLayout DesktopPanelLayout = new javax.swing.GroupLayout(DesktopPanel);
+        DesktopPanel.setLayout(DesktopPanelLayout);
+        DesktopPanelLayout.setHorizontalGroup(
+            DesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        DesktopPanelLayout.setVerticalGroup(
+            DesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/logo.png"))); // NOI18N
 
-        setJMenuBar(jMenuBar1);
+        lbTextoUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbTextoUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTextoUsuario.setText("Usuário");
+
+        lbTextoData.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbTextoData.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTextoData.setText("Data");
+
+        MenuCadastro.setText("Cadastro");
+
+        MenuCadastroClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        MenuCadastroClientes.setText("Clientes");
+        MenuCadastro.add(MenuCadastroClientes);
+
+        MenuCadastroOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        MenuCadastroOS.setText("OS");
+        MenuCadastro.add(MenuCadastroOS);
+
+        MenuCadastroUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        MenuCadastroUsuarios.setText("Usuários");
+        MenuCadastroUsuarios.setEnabled(false);
+        MenuCadastro.add(MenuCadastroUsuarios);
+
+        MenuBar.add(MenuCadastro);
+
+        MenuRelatorio.setText("Relatório");
+        MenuRelatorio.setEnabled(false);
+
+        MenuRelatorioServicos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        MenuRelatorioServicos.setText("Serviços");
+        MenuRelatorio.add(MenuRelatorioServicos);
+
+        MenuBar.add(MenuRelatorio);
+
+        MenuAjuda.setText("Ajuda");
+
+        MenuAjudaSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        MenuAjudaSobre.setText("Sobre");
+        MenuAjudaSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuAjudaSobreActionPerformed(evt);
+            }
+        });
+        MenuAjuda.add(MenuAjudaSobre);
+
+        MenuBar.add(MenuAjuda);
+
+        MenuOpcoes.setText("Opções");
+
+        MenuOpcoesSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        MenuOpcoesSair.setText("Sair");
+        MenuOpcoesSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuOpcoesSairActionPerformed(evt);
+            }
+        });
+        MenuOpcoes.add(MenuOpcoesSair);
+
+        MenuBar.add(MenuOpcoes);
+
+        setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(DesktopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                    .addComponent(lbTextoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbTextoData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addComponent(DesktopPanel)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(lbTextoUsuario)
+                .addGap(62, 62, 62)
+                .addComponent(lbTextoData)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(800, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+       this.controller.carregarDataAtual();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void MenuOpcoesSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpcoesSairActionPerformed
+       this.controller.sairDoSistema();        
+    }//GEN-LAST:event_MenuOpcoesSairActionPerformed
+
+    private void MenuAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAjudaSobreActionPerformed
+        this.controller.ajudaSobre();
+    }//GEN-LAST:event_MenuAjudaSobreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,9 +211,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
     }
 
+    public JLabel getLbTextoData() {
+        return lbTextoData;
+    }
+
+    public void setLbTextoData(JLabel lbTextoData) {
+        this.lbTextoData = lbTextoData;
+    }
+
+    public JLabel getLbTextoUsuario() {
+        return lbTextoUsuario;
+    }
+
+    public void setLbTextoUsuario(JLabel lbTextoUsuario) {
+        this.lbTextoUsuario = lbTextoUsuario;
+    }    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JDesktopPane DesktopPanel;
+    private javax.swing.JMenu MenuAjuda;
+    private javax.swing.JMenuItem MenuAjudaSobre;
+    private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenu MenuCadastro;
+    private javax.swing.JMenuItem MenuCadastroClientes;
+    private javax.swing.JMenuItem MenuCadastroOS;
+    public static javax.swing.JMenuItem MenuCadastroUsuarios;
+    private javax.swing.JMenu MenuOpcoes;
+    private javax.swing.JMenuItem MenuOpcoesSair;
+    public static javax.swing.JMenu MenuRelatorio;
+    private javax.swing.JMenuItem MenuRelatorioServicos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lbTextoData;
+    private javax.swing.JLabel lbTextoUsuario;
     // End of variables declaration//GEN-END:variables
 }
