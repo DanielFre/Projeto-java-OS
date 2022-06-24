@@ -7,8 +7,6 @@ package br.com.infox.controller.helper;
 
 import br.com.infox.model.Usuario;
 import br.com.infox.view.TelaUsuario;
-import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -23,9 +21,12 @@ public class TelaUsuarioHelper {
     }
 
     public void limpatela() {
-
-//       view.getjTFusuario().setText("");
-//       view.getjPFsenha().setText("");
+        view.getJtfUserID().setText("0");
+        view.getJtfUserNome().setText("");
+        view.getJtfUserLogin().setText("");
+        view.getJtfUserSenha().setText("");
+        view.getJtfUserFone().setText("");
+        view.getJtfUserPerfil().setSelectedItem("admin");//combobox
     }
 
     public Usuario obterDadosTelaCadastroUsuario() {
@@ -33,26 +34,29 @@ public class TelaUsuarioHelper {
         int id = Integer.parseInt(view.getJtfUserID().getText());
         String nome = view.getJtfUserNome().getText();
         String login = view.getJtfUserLogin().getText();
-      
-        if (id!=0) {
-            nome = null;
-            login = null;
+
+        if (id > 0) {
+//            nome = null;
+//            login = null;
             Usuario modelo = new Usuario(id, nome, login);
             return modelo;
-        } else if (!nome.equals("")) {
-            id = 0;
-            login = null;
+
+        } else if (!nome.equals("") || nome != null) {
+//            id = 0;
+//            login = null;
             Usuario modelo = new Usuario(id, nome, login);
             return modelo;
-        } else if (!login.equals("")) {
-            id = 0;
-            nome = null;
+
+        } else if (!login.equals("") || login != null) {
+//            id = 0;
+//            nome = null;
             Usuario modelo = new Usuario(id, nome, login);
             return modelo;
+
         } else {
             id = 0;
-            nome = null;
-            login = null;
+            nome = "";
+            login = "";
             Usuario modelo = new Usuario(id, nome, login);
             return modelo;
         }
@@ -66,7 +70,6 @@ public class TelaUsuarioHelper {
         view.getJtfUserSenha().setText(usuario.getSenha());
         view.getJtfUserFone().setText(usuario.getTelefone());
         view.getJtfUserPerfil().setSelectedItem(usuario.getNivelAcesso());//combobox
-        
 
     }
 }

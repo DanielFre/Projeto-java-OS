@@ -11,6 +11,7 @@ import br.com.infox.model.DAO.UsuarioDAO;
 import br.com.infox.model.Usuario;
 import br.com.infox.view.TelaUsuario;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,22 +33,41 @@ public class TelaUsuarioController {
         //pesquisar usuario no banco
         Connection conexao = new ModuloConexao().getConnection();
         UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+        Usuario user = new Usuario();
 
-        if (usuario.getId() != 0) {
-            System.out.println("getId: " + usuario.getId());
-            
-            Usuario user = new Usuario();
+        if (usuario.getId() > 0) {
+
             user = usuarioDAO.consultarPorId(usuario);
-            
-            helper.setarDadosNaTela(user);
+            if (user != null) {
+                helper.setarDadosNaTela(user);
+            } else {
+                view.exibeMensagem("Nenhum usuário encontrado para o ID informado!");
+            }
 
-        } else if (usuario.getNomeUsuario() != null) {
-            System.out.println("getNomeUsuario: " + usuario.getNomeUsuario());
+        } else if (usuario.getNomeUsuario() != null && !usuario.getNomeUsuario().equals("")) {
 
-        } else if (usuario.getLogin() != null) {
-            System.out.println("getLogin: " + usuario.getLogin());
+            user = usuarioDAO.consultarPorNome(usuario);
+            if (user != null) {
+                helper.setarDadosNaTela(user);
+            } else {
+                view.exibeMensagem("Nenhum usuário encontrado para o NOME informado!");
+            }
 
+        } else if (usuario.getLogin() != null && !usuario.getLogin().equals("")) {
+
+            user = usuarioDAO.consultarPorLogin(usuario);
+            if (user != null) {
+                helper.setarDadosNaTela(user);
+            } else {
+                view.exibeMensagem("Nenhum usuário encontrado para o LOGIN informado!");
+            }
+
+        } else {
+            view.exibeMensagem("Nenhum campo de pesquisa foi informado!");
         }
+    }
 
+    public void limparTela() {
+        helper.limpatela();
     }
 }
