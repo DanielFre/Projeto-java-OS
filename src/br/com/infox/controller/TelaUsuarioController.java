@@ -81,17 +81,25 @@ public class TelaUsuarioController {
 
         Usuario usuario = helper.pegarDadosDaTelaParaCadastrarUsuario();
 
-//        try {
         Connection conexao = new ModuloConexao().getConnection();
         UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+        Usuario user = new Usuario();
 
-        usuarioDAO.insert(usuario);
+        Usuario usuarioVerificaLogin = helper.obterDadosTelaCadastroUsuario();
 
-        view.exibeMensagem("Usuário salvo com sucesso!");
-        consultarUsuario();
+        user = usuarioDAO.consultarPorLogin(usuarioVerificaLogin);
+        if (user == null) { //se deu certo e não tem outro login igual
+            user = usuarioDAO.insert(usuario);
+            if (user != null) {
+                view.exibeMensagem("Usuário salvo com sucesso!");
+                consultarUsuario();
 
-//        } catch (SQLException ex) {
-//            view.exibeMensagem("Falha, não foi possivel salvar o Usuario!");
-//        }
+            } else {
+                view.exibeMensagem("Informe todos os campos obrigatórios!");
+            }
+
+        } else {
+            view.exibeMensagem("LOGIN já cadastrado para outro Usuário!");
+        }
     }
 }

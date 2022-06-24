@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -172,24 +173,19 @@ public class UsuarioDAO {
         String sql = "insert into tbusuarios(usuario, fone, login, senha, nivelacesso) values (?,?,?,?,?);";
 
         PreparedStatement statement = conexao.prepareStatement(sql);
-        
-        statement.setString(1, usuario.getNomeUsuario());
-        statement.setString(2, usuario.getTelefone());
-        statement.setString(3, usuario.getLogin());
-        statement.setString(4, usuario.getSenha());
-        statement.setString(5, usuario.getNivelAcesso());
-        
-        statement.execute();
-        
-//        ResultSet resulSet = statement.getGeneratedKeys();
-//        
-//        if(resulSet.next()){
-//            int id = resulSet.getInt("id");
-//            usuario.setId(id);
-//        }
-//        
-        return usuario;
 
+        if (!usuario.getNomeUsuario().equals("") && !usuario.getLogin().equals("") && !usuario.getSenha().equals("")) { //!usuario.getNomeUsuario().isEmpty() && !usuario.getLogin().isEmpty() && !usuario.getSenha().isEmpty() && 
+            statement.setString(1, usuario.getNomeUsuario());
+            statement.setString(2, usuario.getTelefone());
+            statement.setString(3, usuario.getLogin());
+            statement.setString(4, usuario.getSenha());
+            statement.setString(5, usuario.getNivelAcesso());
+
+            statement.execute();
+            return usuario;
+
+        } else {
+            return null;
+        }
     }
-
 }

@@ -26,7 +26,7 @@ public class TelaUsuarioHelper {
         view.getJtfUserLogin().setText("");
         view.getJtfUserSenha().setText("");
         view.getJtfUserFone().setText("");
-        view.getJtfUserPerfil().setSelectedItem("admin");//combobox
+        view.getJtfUserPerfil().setSelectedItem("normal");//combobox
     }
 
     public Usuario obterDadosTelaCadastroUsuario() {
