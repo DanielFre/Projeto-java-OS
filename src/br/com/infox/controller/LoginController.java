@@ -11,6 +11,7 @@ import br.com.infox.model.DAO.UsuarioDAO;
 import br.com.infox.model.Usuario;
 import br.com.infox.view.MenuPrincipal;
 import br.com.infox.view.TelaLogin;
+import java.awt.Color;
 import java.sql.*;
 
 /**
@@ -49,18 +50,22 @@ public class LoginController {
             switch (perfil) {
                 case "admin":
 //                    System.out.println("perfil: admin");
-                    menu.MenuCadastroUsuarios.setEnabled(true);
-                    menu.MenuRelatorio.setEnabled(true);
+                    menu.menuCadastroUsuarios.setEnabled(true);
+                    menu.menuRelatorio.setEnabled(true);
+                    menu.getLbTextoUsuario().setForeground(Color.GREEN.darker());
                     break;
                 case "normal":
 //                    System.out.println("perfil: normal");
+                    menu.getLbTextoUsuario().setForeground(Color.blue);
                     break;
                 case "especial":
 //                    System.out.println("perfil: especial");
+                    menu.getLbTextoUsuario().setForeground(Color.red);
                     break;
                 default:
                     break;
             }
+            menu.getLbTextoUsuario().setText(usuarioDAO.buscaNomeUsuario(usuarioEsenha));
             menu.setVisible(true);
             this.view.dispose();
         } else {        //  senão mostrar alerta informando "usuario ou senha inválidos"

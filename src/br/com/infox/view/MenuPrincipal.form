@@ -4,12 +4,12 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="MenuBar">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="MenuCadastro">
+        <Menu class="javax.swing.JMenu" name="menuCadastro">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cadastro"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuCadastroClientes">
+            <MenuItem class="javax.swing.JMenuItem" name="menuCadastroClientes">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+C"/>
@@ -17,7 +17,7 @@
                 <Property name="text" type="java.lang.String" value="Clientes"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuCadastroOS">
+            <MenuItem class="javax.swing.JMenuItem" name="menuCadastroOS">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+O"/>
@@ -25,7 +25,7 @@
                 <Property name="text" type="java.lang.String" value="OS"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuCadastroUsuarios">
+            <MenuItem class="javax.swing.JMenuItem" name="menuCadastroUsuarios">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+U"/>
@@ -33,13 +33,16 @@
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadastroUsuariosActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="MenuRelatorio">
+        <Menu class="javax.swing.JMenu" name="menuRelatorio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -48,7 +51,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuRelatorioServicos">
+            <MenuItem class="javax.swing.JMenuItem" name="menuRelatorioServicos">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+S"/>
@@ -58,12 +61,12 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="MenuAjuda">
+        <Menu class="javax.swing.JMenu" name="menuAjuda">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajuda"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuAjudaSobre">
+            <MenuItem class="javax.swing.JMenuItem" name="menuAjudaSobre">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+F1"/>
@@ -71,17 +74,17 @@
                 <Property name="text" type="java.lang.String" value="Sobre"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuAjudaSobreActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAjudaSobreActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="MenuOpcoes">
+        <Menu class="javax.swing.JMenu" name="menuOpcoes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Op&#xe7;&#xf5;es"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuOpcoesSair">
+            <MenuItem class="javax.swing.JMenuItem" name="menuOpcoesSair">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+F4"/>
@@ -89,7 +92,7 @@
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuOpcoesSairActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuOpcoesSairActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -128,10 +131,10 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="DesktopPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="desktopPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" pref="156" max="32767" attributes="0"/>
+                  <Component id="jLabel1" pref="140" max="32767" attributes="0"/>
                   <Component id="lbTextoUsuario" max="32767" attributes="0"/>
                   <Component id="lbTextoData" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -140,20 +143,23 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="DesktopPanel" max="32767" attributes="0"/>
+          <Component id="desktopPanel" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               <Component id="lbTextoUsuario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lbTextoData" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="250" max="32767" attributes="0"/>
+              <EmptySpace pref="206" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="200" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JDesktopPane" name="DesktopPanel">
+    <Container class="javax.swing.JDesktopPane" name="desktopPanel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -182,11 +188,14 @@
     <Component class="javax.swing.JLabel" name="lbTextoUsuario">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
+          <Font name="Tahoma" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lbTextoData">
       <Properties>

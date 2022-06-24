@@ -7,6 +7,7 @@ package br.com.infox.controller;
 
 import br.com.infox.view.MenuPrincipal;
 import br.com.infox.view.TelaSobre;
+import br.com.infox.view.TelaUsuario;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -28,14 +29,14 @@ public class MenuPrincipalController {
         DateFormat formatadorDeData = DateFormat.getDateInstance(DateFormat.SHORT);
         this.view.getLbTextoData().setText(formatadorDeData.format(dataAtual));
     }
-    
+
     public void carregarUsuarioAtual() {
-        
+
     }
 
     public void sairDoSistema() {
-        int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?","Atenção!", JOptionPane.YES_NO_OPTION);
-        if (sair == JOptionPane.YES_OPTION){
+        int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Atenção!", JOptionPane.YES_NO_OPTION);
+        if (sair == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }
@@ -43,5 +44,11 @@ public class MenuPrincipalController {
     public void ajudaSobre() {
         TelaSobre ajuda = new TelaSobre();
         ajuda.setVisible(true);
+    }
+
+    public void cadastroUsuarios() {
+        TelaUsuario cadUser = new TelaUsuario();
+        cadUser.setVisible(true);
+        this.view.desktopPanel.add(cadUser);
     }
 }

@@ -10,13 +10,12 @@ package br.com.infox.model;
  * @author daniel.frey
  */
 public class Usuario {
-
     private int id;
+    private String nomeUsuario;
     private String login;
     private String senha;
-    private String nivelAcesso;
-    private String nomeUsuario;
     private String telefone;
+    private String nivelAcesso;
 
     public Usuario(String nivelAcesso) {
         this.nivelAcesso = nivelAcesso;
@@ -28,7 +27,30 @@ public class Usuario {
     }
 
     public Usuario() {
-   }
+    }
+
+    public Usuario(String nome, String login, String senha, String fone, String perfil) {
+        this.nomeUsuario = nome;
+        this.login = login;
+        this.senha = senha;
+        this.telefone = fone;
+        this.nivelAcesso = perfil;
+    }
+
+    public Usuario(int id, String nomeUsuario, String login) {
+        this.id = id;
+        this.login = login;
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public Usuario(int id, String nomeUsuario, String login, String senha, String telefone, String nivelAcesso) {
+        this.id = id;
+        this.login = login;
+        this.senha = senha;
+        this.nivelAcesso = nivelAcesso;
+        this.nomeUsuario = nomeUsuario;
+        this.telefone = telefone;
+    }
 
     public int getId() {
         return id;
