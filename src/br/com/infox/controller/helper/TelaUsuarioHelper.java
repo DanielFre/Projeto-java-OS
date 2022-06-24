@@ -72,4 +72,17 @@ public class TelaUsuarioHelper {
         view.getJtfUserPerfil().setSelectedItem(usuario.getNivelAcesso());//combobox
 
     }
+
+    public Usuario pegarDadosDaTelaParaCadastrarUsuario() {
+        view.getJtfUserID().setText("0");
+        String nome = view.getJtfUserNome().getText();
+        String login = view.getJtfUserLogin().getText();
+        String senha = view.getJtfUserSenha().getText();
+        String fone = view.getJtfUserFone().getText();
+        String perfil = view.getJtfUserPerfil().getSelectedItem().toString();
+
+        Usuario cadUser = new Usuario(nome, login, senha, fone, perfil);
+        return cadUser;
+        
+    }
 }

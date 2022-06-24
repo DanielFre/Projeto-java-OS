@@ -227,7 +227,11 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUserCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserCreateActionPerformed
-//       this.controller.cadastrarUsuario();
+        try {
+            this.controller.cadastrarUsuario();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUserCreateActionPerformed
 
     private void btnUserReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserReadActionPerformed

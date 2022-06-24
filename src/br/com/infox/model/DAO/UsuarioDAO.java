@@ -134,7 +134,7 @@ public class UsuarioDAO {
             return null;
         }
     }
-    
+
     public Usuario consultarPorId(Usuario usuario) throws SQLException {
 
         String sql = "select * from tbusuarios where id = ? limit 1;";
@@ -152,7 +152,7 @@ public class UsuarioDAO {
 
         PreparedStatement statement = conexao.prepareStatement(sql);
         statement.setString(1, usuario.getLogin());
-        
+
         return pesquisarConsultas(statement);
 //        return pesquisa(statement).get(0);
     }
@@ -166,6 +166,30 @@ public class UsuarioDAO {
 
         return pesquisarConsultas(statement);
 //        return pesquisa(statement).get(0);
+    }
+
+    public Usuario insert(Usuario usuario) throws SQLException {
+        String sql = "insert into tbusuarios(usuario, fone, login, senha, nivelacesso) values (?,?,?,?,?);";
+
+        PreparedStatement statement = conexao.prepareStatement(sql);
+        
+        statement.setString(1, usuario.getNomeUsuario());
+        statement.setString(2, usuario.getTelefone());
+        statement.setString(3, usuario.getLogin());
+        statement.setString(4, usuario.getSenha());
+        statement.setString(5, usuario.getNivelAcesso());
+        
+        statement.execute();
+        
+//        ResultSet resulSet = statement.getGeneratedKeys();
+//        
+//        if(resulSet.next()){
+//            int id = resulSet.getInt("id");
+//            usuario.setId(id);
+//        }
+//        
+        return usuario;
+
     }
 
 }

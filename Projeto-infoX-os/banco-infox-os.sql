@@ -13,6 +13,9 @@ create table if not exists tbusuarios (
 
 insert into tbusuarios(usuario, login, senha, nivelacesso) values ('Daniel','admin', 'admin','admin');
 insert into tbusuarios(usuario, login, senha, nivelacesso) values ('Carlos','carlos', 'carlos','normal');
+insert into tbusuarios(usuario, login, senha, nivelacesso) values ('Juca','especial', 'especial','especial');
+
+insert into tbusuarios(usuario, fone, login, senha, nivelacesso) values ('Juca', '55 55555-5555', 'especial', 'especial','especial');
 
 select * from tbusuarios;
 desc tbusuarios;
@@ -51,11 +54,11 @@ insert into tbos (equipamento, defeito, servico, tecnico, valor, id_cliente)
 	values ('celular','não liga','trocar bateria','Daniel','150','1');
 
 select * from tbos;
-
+select * from tbusuarios;
 select login, senha from tbusuarios where login = 'admin' and senha = 'admin';
 
 select nivelacesso from tbusuarios where login = 'admin' and senha = 'admin';
 
-
+select * from tbusuarios where usuario like "%Dani%" limit  1;
 
     

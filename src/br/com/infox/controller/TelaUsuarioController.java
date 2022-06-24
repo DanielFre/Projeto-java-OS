@@ -11,6 +11,8 @@ import br.com.infox.model.DAO.UsuarioDAO;
 import br.com.infox.model.Usuario;
 import br.com.infox.view.TelaUsuario;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +27,10 @@ public class TelaUsuarioController {
     public TelaUsuarioController(TelaUsuario view) {
         this.view = view;
         this.helper = new TelaUsuarioHelper(view);
+    }
+
+    public void limparTela() {
+        helper.limpatela();
     }
 
     public void consultarUsuario() throws SQLException {
@@ -42,6 +48,7 @@ public class TelaUsuarioController {
                 helper.setarDadosNaTela(user);
             } else {
                 view.exibeMensagem("Nenhum usuário encontrado para o ID informado!");
+                limparTela();
             }
 
         } else if (usuario.getNomeUsuario() != null && !usuario.getNomeUsuario().equals("")) {
@@ -51,6 +58,7 @@ public class TelaUsuarioController {
                 helper.setarDadosNaTela(user);
             } else {
                 view.exibeMensagem("Nenhum usuário encontrado para o NOME informado!");
+                limparTela();
             }
 
         } else if (usuario.getLogin() != null && !usuario.getLogin().equals("")) {
@@ -60,14 +68,30 @@ public class TelaUsuarioController {
                 helper.setarDadosNaTela(user);
             } else {
                 view.exibeMensagem("Nenhum usuário encontrado para o LOGIN informado!");
+                limparTela();
             }
 
         } else {
             view.exibeMensagem("Nenhum campo de pesquisa foi informado!");
+            limparTela();
         }
     }
 
-    public void limparTela() {
-        helper.limpatela();
+    public void cadastrarUsuario() throws SQLException {
+
+        Usuario usuario = helper.pegarDadosDaTelaParaCadastrarUsuario();
+
+//        try {
+        Connection conexao = new ModuloConexao().getConnection();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+
+        usuarioDAO.insert(usuario);
+
+        view.exibeMensagem("Usuário salvo com sucesso!");
+        consultarUsuario();
+
+//        } catch (SQLException ex) {
+//            view.exibeMensagem("Falha, não foi possivel salvar o Usuario!");
+//        }
     }
 }
