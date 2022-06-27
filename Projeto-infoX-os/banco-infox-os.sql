@@ -61,4 +61,6 @@ select nivelacesso from tbusuarios where login = 'admin' and senha = 'admin';
 
 select * from tbusuarios where usuario like "%Dani%" limit  1;
 
+
+
     

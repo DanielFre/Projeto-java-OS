@@ -54,6 +54,10 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha: ");
 
+        jtfLogin.setText("admin");
+
+        jpfSenha.setText("admin");
+
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

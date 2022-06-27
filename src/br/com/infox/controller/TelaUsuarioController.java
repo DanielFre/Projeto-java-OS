@@ -78,8 +78,34 @@ public class TelaUsuarioController {
     }
 
     public void cadastrarUsuario() throws SQLException {
+        
+            Usuario usuario = helper.pegarDadosDaTelaParaCadastrarUsuario();
 
-        Usuario usuario = helper.pegarDadosDaTelaParaCadastrarUsuario();
+            Connection conexao = new ModuloConexao().getConnection();
+            UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+            Usuario user = new Usuario();
+
+            Usuario usuarioVerificaLogin = helper.obterDadosTelaCadastroUsuario();
+
+            user = usuarioDAO.consultarPorLogin(usuarioVerificaLogin);
+            if (user == null) { //se deu certo e não tem outro login igual
+                user = usuarioDAO.insert(usuario);
+                if (user != null) {
+                    view.exibeMensagem("Usuário salvo com sucesso!");
+                    consultarUsuario();
+
+                } else {
+                    view.exibeMensagem("Informe todos os campos obrigatórios!");
+                }
+
+            } else {
+                view.exibeMensagem("LOGIN já cadastrado para outro Usuário!");
+            }
+            
+    }
+
+    public void atualizarCadastroUsuario() throws SQLException {
+        Usuario usuario = helper.pegarDadosDaTelaParaAtualizarCadastroDoUsuario();
 
         Connection conexao = new ModuloConexao().getConnection();
         UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
@@ -87,19 +113,60 @@ public class TelaUsuarioController {
 
         Usuario usuarioVerificaLogin = helper.obterDadosTelaCadastroUsuario();
 
-        user = usuarioDAO.consultarPorLogin(usuarioVerificaLogin);
-        if (user == null) { //se deu certo e não tem outro login igual
-            user = usuarioDAO.insert(usuario);
-            if (user != null) {
-                view.exibeMensagem("Usuário salvo com sucesso!");
-                consultarUsuario();
+        if (usuario != null) {
+            user = usuarioDAO.consultarPorLogin(usuarioVerificaLogin);
+            if (user != null) { //se deu certo e não tem outro login igual
+                user = usuarioDAO.update(usuario);
+                if (user != null) {
+                    view.exibeMensagem("Usuário atualizado com sucesso!");
+                    helper.limpatelaID();
+                    consultarUsuario();
+
+                } else {
+                    view.exibeMensagem("Informe todos os campos obrigatórios!");
+                }
 
             } else {
-                view.exibeMensagem("Informe todos os campos obrigatórios!");
+                view.exibeMensagem("LOGIN não pode ser diferente do já cadastrado para o Usuário!");
+            }
+        } else {
+            view.exibeMensagem("Informe os campos obrigatórios (*) e/ou ID do usuario e clique \n"
+                    + "em pesquisar para poder atualizar o cadastro de um Usuario!");
+        }
+    }
+
+    public void deletarUsuario() throws SQLException {
+        Usuario usuario = helper.pegarDadosDaTelaParaDeletarUsuario();
+
+        Connection conexao = new ModuloConexao().getConnection();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+        Usuario user = new Usuario();
+
+        if (usuario != null) {
+
+            if (usuarioDAO.consultarPorIDeLogin(usuario) != null) {
+                int confirmaDeletar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja Deletar esse usuário?", "Atenção!", JOptionPane.YES_NO_OPTION);
+
+                if (confirmaDeletar == JOptionPane.YES_OPTION) {
+
+                    user = usuarioDAO.delete(usuario);
+                    if (user != null) {
+                        view.exibeMensagem("Usuário deletado com sucesso!");
+                        limparTela();
+
+                    } else {
+                        view.exibeMensagem("Não foi possível deletar o usuário, \n"
+                                + "verifique os dados e tente novamente!");
+                    }
+
+                }
+            } else {
+                view.exibeMensagem("Nenhum usuário com o ID e LOGIN informados!");
             }
 
         } else {
-            view.exibeMensagem("LOGIN já cadastrado para outro Usuário!");
+            view.exibeMensagem("Infome no mínimo o ID e LOGIN do usuário!");
         }
+
     }
 }

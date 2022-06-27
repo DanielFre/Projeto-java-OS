@@ -7,10 +7,6 @@ package br.com.infox.model.DAO;
 
 import br.com.infox.model.Usuario;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -92,30 +88,6 @@ public class UsuarioDAO {
         return nome;
     }
 
-//    private ArrayList<Usuario> pesquisa(PreparedStatement statement) throws SQLException {
-//        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-//
-//        statement.execute();
-//        ResultSet resultSet = statement.getResultSet();
-//
-//        if (resultSet.next()) {
-//            int id = resultSet.getInt("id");
-//            String nomeUsuario = resultSet.getString("usuario");
-//            String telefone = resultSet.getString("fone");
-//            String login = resultSet.getString("login");
-//            String senha = resultSet.getString("senha");
-//            String nivelAcesso = resultSet.getString("nivelacesso");
-//
-//            Usuario usuarioComDadosDoBanco = new Usuario(id, nomeUsuario, login, senha, telefone, nivelAcesso);
-//            usuarios.add(usuarioComDadosDoBanco);
-//            return usuarios;
-//        } else {
-//            return null;
-//        }
-//
-//    }
-//
-//    
     public Usuario pesquisarConsultas(PreparedStatement statement) throws SQLException {
         statement.execute();
         ResultSet resultSet = statement.getResultSet();
@@ -129,7 +101,7 @@ public class UsuarioDAO {
             String nivelAcesso = resultSet.getString("nivelacesso");
 
             Usuario usuarioComDadosDoBanco = new Usuario(id, nomeUsuario, login, senha, telefone, nivelAcesso);
-//            usuarios.add(usuarioComDadosDoBanco);
+
             return usuarioComDadosDoBanco;
         } else {
             return null;
@@ -188,4 +160,53 @@ public class UsuarioDAO {
             return null;
         }
     }
+
+    public Usuario update(Usuario usuario) throws SQLException {
+
+        String sql = "update tbusuarios set usuario = ?, fone = ?, senha = ?, nivelacesso = ? where id = ? ;";
+        PreparedStatement statement = conexao.prepareStatement(sql);
+
+        if (!usuario.getNomeUsuario().equals("") && !usuario.getLogin().equals("") && !usuario.getSenha().equals("")) { //!usuario.getNomeUsuario().isEmpty() && !usuario.getLogin().isEmpty() && !usuario.getSenha().isEmpty() && 
+            statement.setString(1, usuario.getNomeUsuario());
+            statement.setString(2, usuario.getTelefone());
+            statement.setString(3, usuario.getSenha());
+            statement.setString(4, usuario.getNivelAcesso());
+            statement.setInt(5, usuario.getId());
+
+            statement.execute();
+            return usuario;
+
+        } else {
+            return null;
+        }
+    }
+
+    public Usuario delete(Usuario usuario) throws SQLException {
+        String sql = "delete from tbusuarios where id = ? and login = ?;";
+        PreparedStatement statement = conexao.prepareStatement(sql);
+
+        if (usuario.getId() > 0 && !usuario.getLogin().equals("")) {
+
+            statement.setInt(1, usuario.getId());
+            statement.setString(2, usuario.getLogin());
+
+            statement.execute();
+            return usuario;
+
+        } else {
+            return null;
+        }
+    }
+    
+     public Usuario consultarPorIDeLogin(Usuario usuario) throws SQLException {
+
+        String sql = "select * from tbusuarios where id = ? and login = ?;";
+
+        PreparedStatement statement = conexao.prepareStatement(sql);
+        statement.setInt(1, usuario.getId());
+        statement.setString(2, usuario.getLogin());
+        
+        return pesquisarConsultas(statement);
+    }
+    
 }

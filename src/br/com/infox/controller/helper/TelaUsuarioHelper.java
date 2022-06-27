@@ -29,8 +29,13 @@ public class TelaUsuarioHelper {
         view.getJtfUserPerfil().setSelectedItem("normal");//combobox
     }
 
-    public Usuario obterDadosTelaCadastroUsuario() {
+    public void limpatelaID() {
+        view.getJtfUserID().setText("0");
+    }
 
+    public Usuario obterDadosTelaCadastroUsuario() {
+        validaCampoID();
+        
         int id = Integer.parseInt(view.getJtfUserID().getText());
         String nome = view.getJtfUserNome().getText();
         String login = view.getJtfUserLogin().getText();
@@ -83,6 +88,44 @@ public class TelaUsuarioHelper {
 
         Usuario cadUser = new Usuario(nome, login, senha, fone, perfil);
         return cadUser;
-        
+
     }
+
+    public Usuario pegarDadosDaTelaParaAtualizarCadastroDoUsuario() {
+        validaCampoID();
+        int id = Integer.parseInt(view.getJtfUserID().getText());
+        String nome = view.getJtfUserNome().getText();
+        String login = view.getJtfUserLogin().getText();
+        String senha = view.getJtfUserSenha().getText();
+        String fone = view.getJtfUserFone().getText();
+        String perfil = view.getJtfUserPerfil().getSelectedItem().toString();
+
+        if (id > 0 && !nome.equals("") && !login.equals("") && !senha.equals("")) {
+            Usuario updateUser = new Usuario(id, nome, login, senha, fone, perfil);
+            return updateUser;
+        } else {
+            return null;
+        }
+    }
+
+    public Usuario pegarDadosDaTelaParaDeletarUsuario() {
+        validaCampoID();
+        int id = Integer.parseInt(view.getJtfUserID().getText());
+        String nome = view.getJtfUserNome().getText();
+        String login = view.getJtfUserLogin().getText();
+
+        if (id > 0 && !login.equals("")) {
+            Usuario deleteUser = new Usuario(id, nome, login);
+            return deleteUser;
+        } else {
+            return null;
+        }
+    }
+
+    public void validaCampoID() {
+        if (view.getJtfUserID().getText().equals("")) {
+            limpatelaID();
+        }
+    }
+
 }
