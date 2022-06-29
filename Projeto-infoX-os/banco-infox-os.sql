@@ -39,19 +39,25 @@ select * from tbclientes;
 create table if not exists tbos (
 	os int not null auto_increment primary key,
     data_os timestamp default current_timestamp,
+    tipo boolean not null,
     equipamento varchar (150) not null,
     defeito varchar (150)not null,
     servico varchar (150) default '',
     tecnico varchar (30) default '',
     valor decimal (10,2) default '0.00',
+    situacao varchar (50) default 'Aguardando Aprovação' not null, 
     id_cliente int not null,
-    foreign key (id_cliente) references tbclientes(id)
+    id_usuario int not null,
+    foreign key (id_cliente) references tbclientes(id),
+    foreign key (id_usuario) references tbusuarios(id),
+    constraint CHECK (situacao in ('Entrega OK', 'Orçamento Reprovado', 'Orçamento Aprovado', 'Aguardando Aprovação','Aguardando Peças','Abandonado Pelo Cliente','Na Bancada','Retornou','Aguardando Entrega','Irreparável'))
+    
 
 ) default charset = utf8mb4;
 desc tbos;
 
-insert into tbos (equipamento, defeito, servico, tecnico, valor, id_cliente) 
-	values ('celular','não liga','trocar bateria','Daniel','150','1');
+insert into tbos (equipamento, defeito, servico, tecnico, valor, id_cliente,id_usuario) 
+	values ('celular','não liga','trocar bateria','Daniel','150','1','1');
 
 select * from tbos;
 select * from tbusuarios;
@@ -65,3 +71,12 @@ desc tbclientes;
 insert into tbclientes(nome, fone) values ('Daniel Frey','55 55555-5555');
 select * from tbclientes;
 select id as 'ID', nome as 'Nome', endereco as 'Endereço', fone as 'Telefone', email as 'E-mail' from tbclientes;
+
+
+desc tbos;
+select * from tbos;
+
+
+
+
+

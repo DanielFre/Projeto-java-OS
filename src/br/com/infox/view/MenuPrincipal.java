@@ -59,6 +59,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        desktopPanel.setMaximumSize(new java.awt.Dimension(640, 540));
+        desktopPanel.setMinimumSize(new java.awt.Dimension(640, 540));
+        desktopPanel.setPreferredSize(new java.awt.Dimension(640, 540));
+
         javax.swing.GroupLayout desktopPanelLayout = new javax.swing.GroupLayout(desktopPanel);
         desktopPanel.setLayout(desktopPanelLayout);
         desktopPanelLayout.setHorizontalGroup(
@@ -67,7 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         desktopPanelLayout.setVerticalGroup(
             desktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -95,6 +99,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         menuCadastroOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuCadastroOS.setText("OS");
+        menuCadastroOS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroOSActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroOS);
 
         menuCadastroUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK));
@@ -160,13 +169,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPanel)
+            .addComponent(desktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(lbTextoUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(lbTextoData)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -193,6 +202,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void menuCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroClientesActionPerformed
        this.controller.cadastroClientes();
     }//GEN-LAST:event_menuCadastroClientesActionPerformed
+
+    private void menuCadastroOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroOSActionPerformed
+        this.controller.cadastroDeOS();
+    }//GEN-LAST:event_menuCadastroOSActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,6 +7,7 @@ package br.com.infox.controller;
 
 import br.com.infox.view.MenuPrincipal;
 import br.com.infox.view.TelaCliente;
+import br.com.infox.view.TelaOS;
 import br.com.infox.view.TelaSobre;
 import br.com.infox.view.TelaUsuario;
 import java.text.DateFormat;
@@ -57,5 +58,11 @@ public class MenuPrincipalController {
         TelaCliente cadClientes = new TelaCliente();
         cadClientes.setVisible(true);
         this.view.desktopPanel.add(cadClientes);
+    }
+
+    public void cadastroDeOS() {
+        TelaOS cadOS = new TelaOS();
+        cadOS.setVisible(true);
+        this.view.desktopPanel.add(cadOS);
     }
 }

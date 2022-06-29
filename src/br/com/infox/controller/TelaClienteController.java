@@ -12,7 +12,6 @@ import br.com.infox.model.DAO.ClienteDAO;
 import br.com.infox.view.TelaCliente;
 import java.sql.*;
 import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
 
 /**
  *
