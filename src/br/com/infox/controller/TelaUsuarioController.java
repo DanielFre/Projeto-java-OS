@@ -11,8 +11,6 @@ import br.com.infox.model.DAO.UsuarioDAO;
 import br.com.infox.model.Usuario;
 import br.com.infox.view.TelaUsuario;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**

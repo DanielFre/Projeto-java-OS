@@ -26,9 +26,9 @@ desc tbusuarios;
 create table if not exists tbclientes (
 	id int not null auto_increment primary key,
     nome varchar (50) not null,
-    endereco varchar (100),
+    endereco varchar (100) default '',
     fone varchar (15) not null,
-    email varchar (50)
+    email varchar (50) default ''
 	
 ) default charset = utf8mb4;
 
@@ -41,9 +41,9 @@ create table if not exists tbos (
     data_os timestamp default current_timestamp,
     equipamento varchar (150) not null,
     defeito varchar (150)not null,
-    servico varchar (150),
-    tecnico varchar (30),
-    valor decimal (10,2),
+    servico varchar (150) default '',
+    tecnico varchar (30) default '',
+    valor decimal (10,2) default '0.00',
     id_cliente int not null,
     foreign key (id_cliente) references tbclientes(id)
 
@@ -58,9 +58,10 @@ select * from tbusuarios;
 select login, senha from tbusuarios where login = 'admin' and senha = 'admin';
 
 select nivelacesso from tbusuarios where login = 'admin' and senha = 'admin';
-
 select * from tbusuarios where usuario like "%Dani%" limit  1;
+delete from tbusuarios where id = 7 and login = 'teste';
 
-
-
-    
+desc tbclientes;
+insert into tbclientes(nome, fone) values ('Daniel Frey','55 55555-5555');
+select * from tbclientes;
+select id as 'ID', nome as 'Nome', endereco as 'Endereço', fone as 'Telefone', email as 'E-mail' from tbclientes;

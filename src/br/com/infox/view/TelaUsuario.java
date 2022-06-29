@@ -6,6 +6,7 @@
 package br.com.infox.view;
 
 import br.com.infox.controller.TelaUsuarioController;
+import java.beans.PropertyVetoException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,11 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         initComponents();
         controller = new TelaUsuarioController(this);
         this.controller.limparTela();
+        try {
+            setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

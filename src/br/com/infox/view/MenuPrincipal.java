@@ -86,6 +86,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         menuCadastroClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuCadastroClientes.setText("Clientes");
+        menuCadastroClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroClientesActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroClientes);
 
         menuCadastroOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
@@ -184,6 +189,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void menuCadastroUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroUsuariosActionPerformed
       this.controller.cadastroUsuarios();
     }//GEN-LAST:event_menuCadastroUsuariosActionPerformed
+
+    private void menuCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroClientesActionPerformed
+       this.controller.cadastroClientes();
+    }//GEN-LAST:event_menuCadastroClientesActionPerformed
 
     /**
      * @param args the command line arguments
