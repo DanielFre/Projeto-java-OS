@@ -35,29 +35,30 @@ create table if not exists tbclientes (
 desc tbclientes;
 insert into tbclientes(nome, fone) values ('Daniel Frey','55 55555-5555');
 select * from tbclientes;
-
+#drop table tbos;
 create table if not exists tbos (
 	os int not null auto_increment primary key,
     data_os timestamp default current_timestamp,
-    tipo boolean not null,
-    equipamento varchar (150) not null,
-    defeito varchar (150)not null,
-    servico varchar (150) default '',
-    tecnico varchar (30) default '',
-    valor decimal (10,2) default '0.00',
-    situacao varchar (50) default 'Aguardando Aprovação' not null, 
-    id_cliente int not null,
-    id_usuario int not null,
-    foreign key (id_cliente) references tbclientes(id),
-    foreign key (id_usuario) references tbusuarios(id),
-    constraint CHECK (situacao in ('Entrega OK', 'Orçamento Reprovado', 'Orçamento Aprovado', 'Aguardando Aprovação','Aguardando Peças','Abandonado Pelo Cliente','Na Bancada','Retornou','Aguardando Entrega','Irreparável'))
     
+    tipo varchar(20) not null default 'Ordem de Serviço',
+    situacao varchar (50) default 'Aguardando Aprovação' not null, 
+    equipamento varchar (150) not null default '',
+    defeito varchar (150)not null default '',
+    servico varchar (150) default '',
+    valor decimal (10,2) default '0.00',
+    id_cliente int not null,
+    id_usuario_tecnico int not null,
+    
+    foreign key (id_cliente) references tbclientes(id),
+    foreign key (id_usuario_tecnico) references tbusuarios(id),
+    constraint CHECK (situacao in ('Entrega OK', 'Orçamento Reprovado', 'Orçamento Aprovado', 'Aguardando Aprovação','Aguardando Peças','Abandonado Pelo Cliente','Na Bancada','Retornou','Aguardando Entrega','Irreparável')),
+    constraint CHECK (tipo in ('Ordem de Serviço','Orçamento'))
 
 ) default charset = utf8mb4;
 desc tbos;
 
-insert into tbos (equipamento, defeito, servico, tecnico, valor, id_cliente,id_usuario) 
-	values ('celular','não liga','trocar bateria','Daniel','150','1','1');
+insert into tbos (situacao, equipamento, defeito, servico, valor, id_cliente,id_usuario_tecnico) 
+	values ('Aguardando Aprovação','celular','não liga','trocar bateria','200.00','1','1');
 
 select * from tbos;
 select * from tbusuarios;
@@ -75,6 +76,8 @@ select id as 'ID', nome as 'Nome', endereco as 'Endereço', fone as 'Telefone', 
 
 desc tbos;
 select * from tbos;
+
+select id as 'Id', nome as 'Nome', fone as 'Telefone' from tbclientes where nome like '%d%' order by nome asc;
 
 
 

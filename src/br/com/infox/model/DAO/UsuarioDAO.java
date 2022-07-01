@@ -7,6 +7,7 @@ package br.com.infox.model.DAO;
 
 import br.com.infox.model.Usuario;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -208,5 +209,29 @@ public class UsuarioDAO {
         
         return pesquisarConsultas(statement);
     }
-    
+
+   public ArrayList<Usuario> selectAll() throws SQLException {
+
+        String sql = "select * from tbusuarios;";
+        PreparedStatement statement = conexao.prepareStatement(sql);
+
+        return pesquisa(statement);
+    }
+   
+   private ArrayList<Usuario> pesquisa(PreparedStatement statement) throws SQLException {
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+
+        statement.execute();
+        ResultSet resultSet = statement.getResultSet();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String usuario = resultSet.getString("usuario");
+            String senha = resultSet.getString("senha");
+
+            Usuario usuarioComDadosDoBanco = new Usuario(id, usuario, senha);
+            usuarios.add(usuarioComDadosDoBanco);
+        }
+        return usuarios;
+    }
 }

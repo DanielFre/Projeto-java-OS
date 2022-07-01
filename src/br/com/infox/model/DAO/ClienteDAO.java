@@ -20,35 +20,6 @@ public class ClienteDAO {
         this.conexao = connection;
     }
 
-//    public Cliente pesquisarConsultas(PreparedStatement statement) throws SQLException {
-//        statement.execute();
-//         
-//        ResultSet resultSet = statement.getResultSet();
-//
-//        if (resultSet.next()) {
-//            int id = resultSet.getInt("id");
-//            String nome = resultSet.getString("nome");
-//            String endereco = resultSet.getString("endereco");
-//            String fone = resultSet.getString("fone");
-//            String email = resultSet.getString("email");
-//
-//            Cliente clienteComDadosDoBanco = new Cliente(id, nome, endereco, fone, email);
-//
-//            return clienteComDadosDoBanco;
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    public Cliente consultarPorNome(Cliente cliente) throws SQLException {
-//
-//        String sql = "select * from tbclientes where nome like %?%;";
-//
-//        PreparedStatement statement = conexao.prepareStatement(sql);
-//        statement.setString(1, cliente.getNome());
-//
-//        return pesquisarConsultas(statement);
-//    }
     public Cliente insert(Cliente cliente) throws SQLException {
         String sql = "insert into tbclientes(nome, endereco, fone, email) values (?,?,?,?);";
 
@@ -113,6 +84,24 @@ public class ClienteDAO {
                 + "endereco as 'Endereço', "
                 + "fone as 'Telefone', "
                 + "email as 'E-mail' "
+                + "from tbclientes "
+                + "where "
+                + "nome like ? "
+                + "order by nome asc;";
+
+        PreparedStatement statement = conexao.prepareStatement(sql);
+        statement.setString(1, "%" + cliente.getPesquisa() + "%");
+
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet;
+
+    }
+    
+    public ResultSet pesquisarClienteNaOS(Cliente cliente) throws SQLException {
+        String sql = "select "
+                + "id as 'Id', "
+                + "nome as 'Nome', "
+                + "fone as 'Telefone' "
                 + "from tbclientes "
                 + "where "
                 + "nome like ? "
