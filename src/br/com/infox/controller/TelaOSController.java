@@ -17,6 +17,7 @@ import br.com.infox.view.TelaOS;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,9 @@ public class TelaOSController {
 
     public void limparTela() {
         helper.limpatela();
+        view.getBtnOS_Adicionar().setEnabled(true);
+        view.getJtfOSPesquisaCliente().setEnabled(true);
+        view.getTblOSClientes().setVisible(true);
     }
 
     public void pesquisarCliente() throws SQLException {
@@ -67,6 +71,7 @@ public class TelaOSController {
             osAdd = osDAO.insert(os);
             if (osAdd != null) {
                 view.exibeMensagem("Ordem de Serviço emitida com Sucesso!");
+                limparTela();
             } else {
                 view.exibeMensagem("Não foi possivel emitir a Ordem de Serviço \n"
                         + "verifique os dados informados e tente novamente!");
@@ -90,8 +95,39 @@ public class TelaOSController {
     }
 
     public void tecnicoSelecionado() {
-//        Usuario user = helper.pegarIdTecnico();
         helper.setarIdTecnico();
+    }
+
+    public void pesquisarOS() throws SQLException {
+        int numeroOS = 0;
+        numeroOS = Integer.parseInt(JOptionPane.showInputDialog("Informe o número da OS"));
+        OS_OrdemServico osID = helper.setarId_OS(numeroOS);
+
+        Connection conexao = new ModuloConexao().getConnection();
+        OS_OrdemServico osPesquisa = new OS_OrdemServico();
+
+        OS_OrdemServicoDAO osDAO = new OS_OrdemServicoDAO(conexao);
+
+        if (numeroOS > 0) {
+            osPesquisa = osDAO.pesquisar(osID);
+
+            if (osPesquisa != null) {
+                view.getBtnOS_Adicionar().setEnabled(false);
+                view.getJtfOSPesquisaCliente().setEnabled(false);
+                view.getTblOSClientes().setVisible(false);
+
+                helper.setarDadosOSnaTela(osPesquisa);
+
+            } else {
+                view.exibeMensagem("Nenhuma Ordem de Serviço ou Orçamento \n encontrado para o número informado!");
+                limparTela();
+            }
+
+        } else {
+          
+            view.exibeMensagem("Informe um número de Ordem de Serviço \n ou Orçamento válido!");
+            
+        }
     }
 
 }

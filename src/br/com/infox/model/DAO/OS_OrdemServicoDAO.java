@@ -41,7 +41,7 @@ public class OS_OrdemServicoDAO {
             statement.setString(3, emitir_os.getEquipamento());
             statement.setString(4, emitir_os.getDefeito());
             statement.setString(5, emitir_os.getServico());
-            statement.setString(6, emitir_os.getValor());
+            statement.setString(6, emitir_os.getValor().replace(",", "."));
             statement.setInt(7, emitir_os.getId_cliente());
             statement.setInt(8, emitir_os.getId_usuario_tecnico());
 
@@ -52,4 +52,49 @@ public class OS_OrdemServicoDAO {
             return null;
         }
     }
+
+    public OS_OrdemServico pesquisar(OS_OrdemServico pesquisar_os) throws SQLException {
+        String sql = "select * from tbos where os = ?;";//8
+
+        PreparedStatement statement = conexao.prepareStatement(sql);
+
+        if (pesquisar_os.getOs() > 0) {
+            statement.setInt(1, pesquisar_os.getOs());
+
+            statement.execute();
+
+            ResultSet resultSet = statement.getResultSet();
+
+            if (resultSet.next()) {
+
+                int os = resultSet.getInt("os");
+                String data_os = resultSet.getString("data_os");
+                String tipo = resultSet.getString("tipo");
+                String situacao = resultSet.getString("situacao");
+                String equipamento = resultSet.getString("equipamento");
+                String defeito = resultSet.getString("defeito");
+                String servico = resultSet.getString("servico");
+                String valor = resultSet.getString("valor");
+
+                int id_cliente = resultSet.getInt("id_cliente");
+                int id_usuario_tecnico = resultSet.getInt("id_usuario_tecnico");
+
+                ClienteDAO nomecli = new ClienteDAO(conexao);
+                String nomeCliente = nomecli.pesquisaNomePorID(id_cliente);//resultSet.getString("nome");
+
+                UsuarioDAO nomeuser = new UsuarioDAO(conexao);
+                String nomeTecnico = nomeuser.buscaNomeUsuarioPorID(id_usuario_tecnico);//resultSet.getString("usuario");
+
+                OS_OrdemServico pesquisa = new OS_OrdemServico(os, data_os, equipamento, defeito, servico, valor, id_cliente, id_usuario_tecnico, tipo, situacao, nomeCliente, nomeTecnico);
+                return pesquisa;
+                
+            } else {
+                return null;
+            }
+
+        } else {
+            return null;
+        }
+    }
+    
 }

@@ -11,6 +11,7 @@ import java.beans.PropertyVetoException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -191,6 +192,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jtfOSid = new javax.swing.JLabel();
         jtfOSData = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         cbcOS_Situacao = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
@@ -277,6 +279,19 @@ public class TelaOS extends javax.swing.JInternalFrame {
         jtfOSData.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jtfOSData.setText("00/00/0000");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/clear_icon.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setMaximumSize(new java.awt.Dimension(20, 20));
+        jButton1.setMinimumSize(new java.awt.Dimension(20, 20));
+        jButton1.setPreferredSize(new java.awt.Dimension(20, 20));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -284,34 +299,45 @@ public class TelaOS extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rdbOS_OrdemDeServico)
-                    .addComponent(rdbOSOrcamento)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rdbOS_OrdemDeServico)
+                        .addGap(99, 105, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfOSData)
-                            .addComponent(jtfOSid))))
-                .addGap(99, 99, 99))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jtfOSid)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jtfOSData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rdbOSOrcamento)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfOSid))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfOSData))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jtfOSid))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jtfOSData)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(rdbOSOrcamento)
-                .addGap(10, 10, 10)
+                .addGap(5, 5, 5)
                 .addComponent(rdbOS_OrdemDeServico)
-                .addGap(10, 10, 10))
+                .addGap(11, 11, 11))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 17, -1, -1));
@@ -473,6 +499,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOS_Pesquisar.setMaximumSize(new java.awt.Dimension(80, 80));
         btnOS_Pesquisar.setMinimumSize(new java.awt.Dimension(80, 80));
         btnOS_Pesquisar.setPreferredSize(new java.awt.Dimension(80, 80));
+        btnOS_Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOS_PesquisarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnOS_Pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 389, -1, -1));
 
         btnOS_Imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/os_printer_icon.png"))); // NOI18N
@@ -563,6 +594,58 @@ public class TelaOS extends javax.swing.JInternalFrame {
         this.controller.tecnicoSelecionado();
     }//GEN-LAST:event_cbcOS_TecnicoItemStateChanged
 
+    private void btnOS_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOS_PesquisarActionPerformed
+        try {
+            this.controller.pesquisarOS();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaOS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnOS_PesquisarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.controller.limparTela();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public JButton getBtnOS_Adicionar() {
+        return btnOS_Adicionar;
+    }
+
+    public void setBtnOS_Adicionar(JButton btnOS_Adicionar) {
+        this.btnOS_Adicionar = btnOS_Adicionar;
+    }
+
+    public JButton getBtnOS_Alterar() {
+        return btnOS_Alterar;
+    }
+
+    public void setBtnOS_Alterar(JButton btnOS_Alterar) {
+        this.btnOS_Alterar = btnOS_Alterar;
+    }
+
+    public JButton getBtnOS_Deletar() {
+        return btnOS_Deletar;
+    }
+
+    public void setBtnOS_Deletar(JButton btnOS_Deletar) {
+        this.btnOS_Deletar = btnOS_Deletar;
+    }
+
+    public JButton getBtnOS_Imprimir() {
+        return btnOS_Imprimir;
+    }
+
+    public void setBtnOS_Imprimir(JButton btnOS_Imprimir) {
+        this.btnOS_Imprimir = btnOS_Imprimir;
+    }
+
+    public JButton getBtnOS_Pesquisar() {
+        return btnOS_Pesquisar;
+    }
+
+    public void setBtnOS_Pesquisar(JButton btnOS_Pesquisar) {
+        this.btnOS_Pesquisar = btnOS_Pesquisar;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOS_Adicionar;
@@ -573,6 +656,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbcOS_Situacao;
     private javax.swing.JComboBox<String> cbcOS_Tecnico;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -600,8 +684,8 @@ public class TelaOS extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jtfOSTecnicoID;
     private javax.swing.JTextField jtfOSValor;
     private javax.swing.JLabel jtfOSid;
-    private javax.swing.JRadioButton rdbOSOrcamento;
-    private javax.swing.JRadioButton rdbOS_OrdemDeServico;
+    public javax.swing.JRadioButton rdbOSOrcamento;
+    public javax.swing.JRadioButton rdbOS_OrdemDeServico;
     private javax.swing.JTable tblOSClientes;
     // End of variables declaration//GEN-END:variables
 }

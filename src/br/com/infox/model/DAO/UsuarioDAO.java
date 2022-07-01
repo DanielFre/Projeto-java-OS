@@ -198,27 +198,27 @@ public class UsuarioDAO {
             return null;
         }
     }
-    
-     public Usuario consultarPorIDeLogin(Usuario usuario) throws SQLException {
+
+    public Usuario consultarPorIDeLogin(Usuario usuario) throws SQLException {
 
         String sql = "select * from tbusuarios where id = ? and login = ?;";
 
         PreparedStatement statement = conexao.prepareStatement(sql);
         statement.setInt(1, usuario.getId());
         statement.setString(2, usuario.getLogin());
-        
+
         return pesquisarConsultas(statement);
     }
 
-   public ArrayList<Usuario> selectAll() throws SQLException {
+    public ArrayList<Usuario> selectAll() throws SQLException {
 
         String sql = "select * from tbusuarios;";
         PreparedStatement statement = conexao.prepareStatement(sql);
 
         return pesquisa(statement);
     }
-   
-   private ArrayList<Usuario> pesquisa(PreparedStatement statement) throws SQLException {
+
+    private ArrayList<Usuario> pesquisa(PreparedStatement statement) throws SQLException {
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
         statement.execute();
@@ -234,4 +234,29 @@ public class UsuarioDAO {
         }
         return usuarios;
     }
+
+    public String buscaNomeUsuarioPorID(int id_usuario) throws SQLException {
+        Usuario usuario = new Usuario();
+        usuario.setId(id_usuario);
+
+        String nome = "";
+
+        String sql = "select usuario from tbusuarios "
+                + "where "
+                + "id = ? ;";
+
+        PreparedStatement statement = conexao.prepareStatement(sql);
+
+        statement.setInt(1, usuario.getId());
+
+        statement.execute();
+
+        ResultSet resultSet = statement.getResultSet();
+
+        if (resultSet.next()) {
+            nome = resultSet.getString(1);
+        }
+        return nome;
+    }
+
 }

@@ -117,13 +117,39 @@ public class TelaOSHelper {
         }
     }
 
-//    public Usuario pegarIdTecnico() {
-//        return  view.getCbcOS_Tecnico().getSelectedItem();
-//    }
     public void setarIdTecnico() {
-        String teste = (String) view.getCbcOS_Tecnico().getSelectedItem(); //.getSelectedIndex();//electedItem();
-        teste = teste.replaceAll(".+ ", "");
-        view.getJtfOSTecnicoID().setText(teste + "");
+        String id = (String) view.getCbcOS_Tecnico().getSelectedItem(); //.getSelectedIndex();//electedItem();
+        id = id.replaceAll(".+ ", "");
+        view.getJtfOSTecnicoID().setText(id + "");
+
+    }
+
+    public OS_OrdemServico setarId_OS(int numeroOS) {
+        int id = numeroOS;
+        OS_OrdemServico osID = new OS_OrdemServico(id);
+        return osID;
+    }
+
+    public void setarDadosOSnaTela(OS_OrdemServico pesquisar) {
+        view.getJtfOSid().setText(pesquisar.getOs() + ""); //ok
+        view.getJtfOSData().setText(pesquisar.getData_os());//ok
+        
+        if(pesquisar.getTipo().equals("Orçamento")){
+            view.rdbOSOrcamento.setSelected(true);
+            setarTipodeOS();
+        }else{
+            view.rdbOS_OrdemDeServico.setSelected(true);
+            setarTipodeOS();
+        }
+        view.getCbcOS_Situacao().setSelectedItem(pesquisar.getSituacao());//ok
+        view.getJtfOSClienteID().setText(pesquisar.getId_cliente() + "");//ok
+        view.getJtfOSClienteCliente().setText(pesquisar.getNomeCliente()); //ok
+        view.getJtfOSEquipamento().setText(pesquisar.getEquipamento());//ok
+        view.getJtfOSDefeito().setText(pesquisar.getDefeito());//ok
+        view.getJtfOSServico().setText(pesquisar.getServico());//ok
+        view.getCbcOS_Tecnico().setSelectedItem(pesquisar.getNomeTecnico() + " - " + pesquisar.getId_usuario_tecnico());
+        view.getJtfOSTecnicoID().setText(pesquisar.getId_usuario_tecnico() + "");//ok
+        view.getJtfOSValor().setText(pesquisar.getValor());//ok
 
     }
 

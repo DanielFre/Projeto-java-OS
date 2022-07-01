@@ -96,7 +96,7 @@ public class ClienteDAO {
         return resultSet;
 
     }
-    
+
     public ResultSet pesquisarClienteNaOS(Cliente cliente) throws SQLException {
         String sql = "select "
                 + "id as 'Id', "
@@ -113,6 +113,28 @@ public class ClienteDAO {
         ResultSet resultSet = statement.executeQuery();
         return resultSet;
 
+    }
+
+    public String pesquisaNomePorID(int id_cliente) throws SQLException {
+        Cliente cliente = new Cliente();
+        cliente.setId(id_cliente);
+        
+        String nome = "";
+
+        String sql = "select nome from tbclientes where id = ?;";
+
+        PreparedStatement statement = conexao.prepareStatement(sql);
+
+        statement.setInt(1, cliente.getId());
+
+        statement.execute();
+
+        ResultSet resultSet = statement.getResultSet();
+
+        if (resultSet.next()) {
+            nome = resultSet.getString(1);
+        }
+        return nome;
     }
 
 }

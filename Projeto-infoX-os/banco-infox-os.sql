@@ -79,7 +79,8 @@ select * from tbos;
 
 select id as 'Id', nome as 'Nome', fone as 'Telefone' from tbclientes where nome like '%d%' order by nome asc;
 
+insert into tbos (tipo, situacao, equipamento, defeito, servico, valor,id_cliente, id_usuario_tecnico) 
+                values ('Ordem de Serviço','Na Bancada','celular','tela quebrada','trocar tela','250.00','15','1');
 
 
-
-
+select * from tbos where os = 5;
