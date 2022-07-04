@@ -5,8 +5,6 @@
  */
 package br.com.infox.model;
 
-import java.util.Date;
-
 /**
  *
  * @author daniel.frey
@@ -62,6 +60,19 @@ public class OS_OrdemServico {
         this.situacao = situacao;
         this.nomeCliente = nomeCliente;
         this.nomeTecnico = nomeTecnico;
+    }
+
+    public OS_OrdemServico(int os, String equipamento, String defeito, String servico, float valor, int id_cliente, int id_usuario_tecnico, String tipo, String situacao) {
+        this.os = os;
+        this.equipamento = equipamento;
+        this.defeito = defeito;
+        this.servico = servico;
+        this.valor = String.format("%.2f", valor);
+        this.id_cliente = id_cliente;
+        this.id_usuario_tecnico = id_usuario_tecnico;
+        this.tipo = tipo;
+        this.situacao = situacao;
+
     }
 
     public int getOs() {

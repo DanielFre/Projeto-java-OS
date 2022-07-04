@@ -83,4 +83,14 @@ insert into tbos (tipo, situacao, equipamento, defeito, servico, valor,id_client
                 values ('Ordem de Serviço','Na Bancada','celular','tela quebrada','trocar tela','250.00','15','1');
 
 
-select * from tbos where os = 5;
+select * from tbos where os = 2;
+
+update tbos set 
+tipo = 'Ordem de Serviço', 
+situacao = 'Aguardando Entrega', 
+equipamento = 'celular', 
+defeito = 'não liga', 
+servico = 'trocar bateria', 
+valor = '200.00', 
+id_usuario_tecnico = '3' 
+where os = 2;

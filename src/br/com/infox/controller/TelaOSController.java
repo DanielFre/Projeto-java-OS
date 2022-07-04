@@ -35,9 +35,28 @@ public class TelaOSController {
 
     public void limparTela() {
         helper.limpatela();
+        helper.limpatabela();
+        habilitaCampos();
+    }
+
+    public void habilitaCampos() {
+        view.getBtnOS_Alterar().setEnabled(false);
+        view.getBtnOS_Deletar().setEnabled(false);
+        view.getBtnOS_Imprimir().setEnabled(false);
+
         view.getBtnOS_Adicionar().setEnabled(true);
         view.getJtfOSPesquisaCliente().setEnabled(true);
         view.getTblOSClientes().setVisible(true);
+    }
+
+    public void desabilitaCampos() {
+        view.getBtnOS_Alterar().setEnabled(true);
+        view.getBtnOS_Deletar().setEnabled(true);
+        view.getBtnOS_Imprimir().setEnabled(true);
+
+        view.getBtnOS_Adicionar().setEnabled(false);
+        view.getJtfOSPesquisaCliente().setEnabled(false);
+        view.getTblOSClientes().setVisible(false);
     }
 
     public void pesquisarCliente() throws SQLException {
@@ -72,13 +91,14 @@ public class TelaOSController {
             if (osAdd != null) {
                 view.exibeMensagem("Ordem de Serviço emitida com Sucesso!");
                 limparTela();
+
             } else {
                 view.exibeMensagem("Não foi possivel emitir a Ordem de Serviço \n"
                         + "verifique os dados informados e tente novamente!");
             }
 
         } else {
-            view.exibeMensagem("Informe todos os campos obrigatórios!!");
+            view.exibeMensagem("Informe todos os campos obrigatórios!");
         }
 
     }
@@ -112,9 +132,7 @@ public class TelaOSController {
             osPesquisa = osDAO.pesquisar(osID);
 
             if (osPesquisa != null) {
-                view.getBtnOS_Adicionar().setEnabled(false);
-                view.getJtfOSPesquisaCliente().setEnabled(false);
-                view.getTblOSClientes().setVisible(false);
+                desabilitaCampos();
 
                 helper.setarDadosOSnaTela(osPesquisa);
 
@@ -124,10 +142,32 @@ public class TelaOSController {
             }
 
         } else {
-          
+
             view.exibeMensagem("Informe um número de Ordem de Serviço \n ou Orçamento válido!");
-            
+
         }
     }
 
+    public void alterarOS() throws SQLException {
+        OS_OrdemServico os = helper.pegarDadosDaTelaParaAlterar_OS();
+        Connection conexao = new ModuloConexao().getConnection();
+        OS_OrdemServico osAtt = new OS_OrdemServico();
+        OS_OrdemServicoDAO osDAO = new OS_OrdemServicoDAO(conexao);
+
+        if (os != null) {
+            osAtt = osDAO.update(os);
+            if (osAtt != null) {
+                view.exibeMensagem("Ordem de Serviço alterada com Sucesso!");
+                limparTela();
+                habilitaCampos();
+            } else {
+                view.exibeMensagem("Não foi possivel alterar a Ordem de Serviço \n"
+                        + "verifique os dados informados e tente novamente!");
+            }
+
+        } else {
+            view.exibeMensagem("Informe todos os campos obrigatórios!");
+        }
+
+    }
 }

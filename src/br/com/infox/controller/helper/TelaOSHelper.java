@@ -38,7 +38,9 @@ public class TelaOSHelper {
         view.getJtfOSServico().setText("");
         view.getJtfOSValor().setText("0,00");
         view.getJtfOSid().setText("0");
-        view.getCbcOS_Tecnico().setSelectedItem("");
+        view.getCbcOS_Tecnico().setSelectedItem(1);
+        view.getCbcOS_Situacao().setSelectedItem(1);
+
     }
 
     public Cliente PegarDadosDaTelaDeOSParaPesquisarCliente() {
@@ -133,11 +135,11 @@ public class TelaOSHelper {
     public void setarDadosOSnaTela(OS_OrdemServico pesquisar) {
         view.getJtfOSid().setText(pesquisar.getOs() + ""); //ok
         view.getJtfOSData().setText(pesquisar.getData_os());//ok
-        
-        if(pesquisar.getTipo().equals("Orçamento")){
+
+        if (pesquisar.getTipo().equals("Orçamento")) {
             view.rdbOSOrcamento.setSelected(true);
             setarTipodeOS();
-        }else{
+        } else {
             view.rdbOS_OrdemDeServico.setSelected(true);
             setarTipodeOS();
         }
@@ -150,6 +152,29 @@ public class TelaOSHelper {
         view.getCbcOS_Tecnico().setSelectedItem(pesquisar.getNomeTecnico() + " - " + pesquisar.getId_usuario_tecnico());
         view.getJtfOSTecnicoID().setText(pesquisar.getId_usuario_tecnico() + "");//ok
         view.getJtfOSValor().setText(pesquisar.getValor());//ok
+
+    }
+
+    public OS_OrdemServico pegarDadosDaTelaParaAlterar_OS() {
+
+        String tipo = setarTipodeOS().getTipo();
+        String equipamento = view.getJtfOSEquipamento().getText();
+        String defeito = view.getJtfOSDefeito().getText();
+        String servico = view.getJtfOSServico().getText();
+        String valorOS = view.getJtfOSValor().getText().replace(",", ".");
+        float valor = Float.parseFloat(valorOS);
+        int id_cliente = Integer.parseInt(view.getJtfOSClienteID().getText());
+        int id_usuario_tecnico = Integer.parseInt(view.getJtfOSTecnicoID().getText());
+        int idOS = Integer.parseInt(view.getJtfOSid().getText());
+        String situacao = (String) view.getCbcOS_Situacao().getSelectedItem();
+
+        if (id_cliente > 0 && id_usuario_tecnico > 0 && !equipamento.equals("") && equipamento != null && !defeito.equals("") && defeito != null) {
+            OS_OrdemServico os = new OS_OrdemServico(idOS, equipamento, defeito, servico, valor, id_cliente, id_usuario_tecnico, tipo, situacao);
+
+            return os;
+        } else {
+            return null;
+        }
 
     }
 

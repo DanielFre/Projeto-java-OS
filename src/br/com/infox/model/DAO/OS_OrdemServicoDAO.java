@@ -87,7 +87,7 @@ public class OS_OrdemServicoDAO {
 
                 OS_OrdemServico pesquisa = new OS_OrdemServico(os, data_os, equipamento, defeito, servico, valor, id_cliente, id_usuario_tecnico, tipo, situacao, nomeCliente, nomeTecnico);
                 return pesquisa;
-                
+
             } else {
                 return null;
             }
@@ -96,5 +96,36 @@ public class OS_OrdemServicoDAO {
             return null;
         }
     }
-    
+
+    public OS_OrdemServico update(OS_OrdemServico alterar_os) throws SQLException {
+        String sql = "update tbos set "
+                + "tipo = ?, "
+                + "situacao = ?, "
+                + "equipamento = ?, "
+                + "defeito = ?, "
+                + "servico = ?, "
+                + "valor = ?, "
+                + "id_usuario_tecnico = ? "
+                + "where os = ? ;";
+
+        PreparedStatement statement = conexao.prepareStatement(sql);
+
+        if (alterar_os.getId_usuario_tecnico() > 0 && alterar_os.getId_cliente() > 0 && alterar_os.getEquipamento() != null && !alterar_os.getEquipamento().equals("") && alterar_os.getDefeito() != null && !alterar_os.getDefeito().equals("")) {
+            statement.setString(1, alterar_os.getTipo());
+            statement.setString(2, alterar_os.getSituacao());
+            statement.setString(3, alterar_os.getEquipamento());
+            statement.setString(4, alterar_os.getDefeito());
+            statement.setString(5, alterar_os.getServico());
+            statement.setString(6, alterar_os.getValor().replace(",", "."));
+            statement.setInt(7, alterar_os.getId_usuario_tecnico());
+            statement.setInt(8, alterar_os.getOs());
+            
+            statement.execute();
+            
+            return alterar_os;
+
+        } else {
+            return null;
+        }
+    }
 }

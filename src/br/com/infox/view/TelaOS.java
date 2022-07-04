@@ -280,12 +280,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         jtfOSData.setText("00/00/0000");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/clear_icon.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setFocusable(false);
+        jButton1.setFocusPainted(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setMaximumSize(new java.awt.Dimension(20, 20));
         jButton1.setMinimumSize(new java.awt.Dimension(20, 20));
-        jButton1.setPreferredSize(new java.awt.Dimension(20, 20));
+        jButton1.setPreferredSize(new java.awt.Dimension(40, 25));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -308,12 +307,10 @@ public class TelaOS extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jtfOSid)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jtfOSid)
                             .addComponent(jtfOSData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(rdbOSOrcamento)
@@ -476,6 +473,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOS_Alterar.setMaximumSize(new java.awt.Dimension(80, 80));
         btnOS_Alterar.setMinimumSize(new java.awt.Dimension(80, 80));
         btnOS_Alterar.setPreferredSize(new java.awt.Dimension(80, 80));
+        btnOS_Alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOS_AlterarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnOS_Alterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 389, -1, -1));
 
         btnOS_Adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/os_add_icon.png"))); // NOI18N
@@ -605,6 +607,14 @@ public class TelaOS extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.controller.limparTela();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnOS_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOS_AlterarActionPerformed
+        try {
+            this.controller.alterarOS();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaOS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnOS_AlterarActionPerformed
 
     public JButton getBtnOS_Adicionar() {
         return btnOS_Adicionar;
