@@ -111,7 +111,7 @@ inner join tbusuarios as US
 on CLI.id = OS.id_cliente and US.id = OS.id_usuario_tecnico;
 
 select 
-OS.os, date_format(OS.data_os, '%d/%m/%Y - %H:%i') as data_os, OS.tipo, OS.situacao, OS.equipamento , OS.valor,
+OS.os, date_format(OS.data_os, '%d/%m/%Y') as data_os, OS.tipo, OS.situacao, OS.equipamento , OS.valor,
 CLI.nome, CLI.fone,
 US.usuario
 from tbos as OS 
@@ -120,3 +120,14 @@ inner join tbusuarios as US
 on CLI.id = OS.id_cliente and US.id = OS.id_usuario_tecnico;
 
 
+select 
+OS.os, date_format(OS.data_os, '%d/%m/%Y') as data_os, OS.tipo, OS.situacao, OS.equipamento, OS.defeito, OS.servico, OS.valor,
+CLI.nome, CLI.fone,
+US.usuario
+from tbos as OS 
+inner join tbclientes as CLI
+inner join tbusuarios as US
+on CLI.id = OS.id_cliente and US.id = OS.id_usuario_tecnico where os = 1;
+
+select * from tbos;
+select max(os) from tbos;
