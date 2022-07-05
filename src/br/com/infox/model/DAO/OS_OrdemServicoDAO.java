@@ -54,7 +54,7 @@ public class OS_OrdemServicoDAO {
     }
 
     public OS_OrdemServico pesquisar(OS_OrdemServico pesquisar_os) throws SQLException {
-        String sql = "select * from tbos where os = ?;";//8
+        String sql = "select os, date_format(data_os, '%d/%m/%Y - %H:%i') as data_os, tipo, situacao, equipamento, defeito, servico, valor, id_cliente, id_usuario_tecnico from tbos where os = ?;";//8
 
         PreparedStatement statement = conexao.prepareStatement(sql);
 
@@ -119,13 +119,50 @@ public class OS_OrdemServicoDAO {
             statement.setString(6, alterar_os.getValor().replace(",", "."));
             statement.setInt(7, alterar_os.getId_usuario_tecnico());
             statement.setInt(8, alterar_os.getOs());
-            
+
             statement.execute();
-            
+
             return alterar_os;
 
         } else {
             return null;
         }
+    }
+
+    public OS_OrdemServico delete(OS_OrdemServico deletar_os) throws SQLException {
+        String sql = "delete from tbos where os = ? ;";
+
+        PreparedStatement statement = conexao.prepareStatement(sql);
+
+        if (deletar_os.getOs() > 0) {
+
+            statement.setInt(1, deletar_os.getOs());
+
+            statement.execute();
+
+            return deletar_os;
+
+        } else {
+            return null;
+        }
+    }
+
+    public OS_OrdemServico recuperarOS() throws SQLException {
+        String sql = "select max(os) from tbos;";
+
+        PreparedStatement statement = conexao.prepareStatement(sql);
+        statement.execute();
+        ResultSet resultSet = statement.getResultSet();
+
+        if (resultSet.next()) {
+            int os = resultSet.getInt("max(os)");
+
+            OS_OrdemServico pesquisa = new OS_OrdemServico(os);
+            return pesquisa;
+            
+        } else {
+            return null;
+        }
+
     }
 }

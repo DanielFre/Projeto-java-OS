@@ -94,3 +94,29 @@ servico = 'trocar bateria',
 valor = '200.00', 
 id_usuario_tecnico = '3' 
 where os = 2;
+
+select os, date_format(data_os, '%d/%m/%Y - %H:%i') as data_os, tipo, situacao, equipamento, defeito, servico, valor, id_cliente, id_usuario_tecnico from tbos where os = 2;
+
+select * from tbclientes order by nome;
+
+#################
+
+select 
+OS.os as 'OS', date_format(OS.data_os, '%d/%m/%Y - %H:%i') as 'Data OS', OS.tipo as 'Tipo', OS.situacao as 'Situação', OS.equipamento as 'Equipamento', OS.valor as 'Valor R$',
+CLI.nome as 'Cliente', CLI.fone as 'Telefone',
+US.usuario as 'Usuário'
+from tbos as OS 
+inner join tbclientes as CLI
+inner join tbusuarios as US
+on CLI.id = OS.id_cliente and US.id = OS.id_usuario_tecnico;
+
+select 
+OS.os, date_format(OS.data_os, '%d/%m/%Y - %H:%i') as data_os, OS.tipo, OS.situacao, OS.equipamento , OS.valor,
+CLI.nome, CLI.fone,
+US.usuario
+from tbos as OS 
+inner join tbclientes as CLI
+inner join tbusuarios as US
+on CLI.id = OS.id_cliente and US.id = OS.id_usuario_tecnico;
+
+

@@ -44,6 +44,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuCadastroOS = new javax.swing.JMenuItem();
         menuCadastroUsuarios = new javax.swing.JMenuItem();
         menuRelatorio = new javax.swing.JMenu();
+        menuRelatorioClientes = new javax.swing.JMenuItem();
         menuRelatorioServicos = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         menuAjudaSobre = new javax.swing.JMenuItem();
@@ -61,7 +62,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         desktopPanel.setMaximumSize(new java.awt.Dimension(640, 540));
         desktopPanel.setMinimumSize(new java.awt.Dimension(640, 540));
-        desktopPanel.setPreferredSize(new java.awt.Dimension(640, 540));
 
         javax.swing.GroupLayout desktopPanelLayout = new javax.swing.GroupLayout(desktopPanel);
         desktopPanel.setLayout(desktopPanelLayout);
@@ -121,8 +121,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuRelatorio.setText("Relatório");
         menuRelatorio.setEnabled(false);
 
+        menuRelatorioClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuRelatorioClientes.setText("Clientes");
+        menuRelatorioClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRelatorioClientesActionPerformed(evt);
+            }
+        });
+        menuRelatorio.add(menuRelatorioClientes);
+
         menuRelatorioServicos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
         menuRelatorioServicos.setText("Serviços");
+        menuRelatorioServicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRelatorioServicosActionPerformed(evt);
+            }
+        });
         menuRelatorio.add(menuRelatorioServicos);
 
         MenuBar.add(menuRelatorio);
@@ -207,6 +221,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.controller.cadastroDeOS();
     }//GEN-LAST:event_menuCadastroOSActionPerformed
 
+    private void menuRelatorioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioClientesActionPerformed
+       this.controller.relatorioDeClientes();
+    }//GEN-LAST:event_menuRelatorioClientesActionPerformed
+
+    private void menuRelatorioServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioServicosActionPerformed
+         this.controller.relatorioDeServicos();
+    }//GEN-LAST:event_menuRelatorioServicosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,6 +295,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuOpcoes;
     private javax.swing.JMenuItem menuOpcoesSair;
     public static javax.swing.JMenu menuRelatorio;
+    private javax.swing.JMenuItem menuRelatorioClientes;
     private javax.swing.JMenuItem menuRelatorioServicos;
     // End of variables declaration//GEN-END:variables
 }

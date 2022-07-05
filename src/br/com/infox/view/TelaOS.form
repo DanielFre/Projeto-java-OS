@@ -200,7 +200,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Situa&#xe7;&#xe3;o:"/>
+        <Property name="text" type="java.lang.String" value="* Situa&#xe7;&#xe3;o:"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -211,17 +211,18 @@
     <Component class="javax.swing.JComboBox" name="cbcOS_Situacao">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="10">
-            <StringItem index="0" value="Na Bancada"/>
-            <StringItem index="1" value="Entrega OK"/>
-            <StringItem index="2" value="Or&#xe7;amento Reprovado"/>
-            <StringItem index="3" value="Or&#xe7;amento Aprovado"/>
+          <StringArray count="11">
+            <StringItem index="0" value=" "/>
+            <StringItem index="1" value="Na Bancada"/>
+            <StringItem index="2" value="Entrega OK"/>
+            <StringItem index="3" value="Aguardando Entrega"/>
             <StringItem index="4" value="Aguardando Aprova&#xe7;&#xe3;o"/>
             <StringItem index="5" value="Aguardando Pe&#xe7;as"/>
             <StringItem index="6" value="Abandonado Pelo Cliente"/>
-            <StringItem index="7" value="Retornou"/>
-            <StringItem index="8" value="Aguardando Entrega"/>
-            <StringItem index="9" value="Irrepar&#xe1;vel"/>
+            <StringItem index="7" value="Or&#xe7;amento Reprovado"/>
+            <StringItem index="8" value="Or&#xe7;amento Aprovado"/>
+            <StringItem index="9" value="Retornou"/>
+            <StringItem index="10" value="Irrepar&#xe1;vel"/>
           </StringArray>
         </Property>
       </Properties>
@@ -230,7 +231,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="65" y="151" width="169" height="-1"/>
+          <AbsoluteConstraints x="74" y="151" width="160" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -400,7 +401,9 @@
     <Component class="javax.swing.JComboBox" name="cbcOS_Tecnico">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="1">
+            <StringItem index="0" value=" "/>
+          </StringArray>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Usu&#xe1;rio"/>
       </Properties>
@@ -441,11 +444,11 @@
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="T&#xe9;cnico:"/>
+        <Property name="text" type="java.lang.String" value="* T&#xe9;cnico:"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="45" y="339" width="-1" height="-1"/>
+          <AbsoluteConstraints x="35" y="339" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -570,6 +573,9 @@
           <Dimension value="[80, 80]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOS_ImprimirActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="492" y="389" width="-1" height="-1"/>
@@ -596,6 +602,9 @@
           <Dimension value="[80, 80]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOS_DeletarActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="382" y="389" width="-1" height="-1"/>

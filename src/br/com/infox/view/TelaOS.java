@@ -339,11 +339,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 17, -1, -1));
 
-        jLabel5.setText("Situação:");
+        jLabel5.setText("* Situação:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 154, -1, -1));
 
-        cbcOS_Situacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Na Bancada", "Entrega OK", "Orçamento Reprovado", "Orçamento Aprovado", "Aguardando Aprovação", "Aguardando Peças", "Abandonado Pelo Cliente", "Retornou", "Aguardando Entrega", "Irreparável" }));
-        getContentPane().add(cbcOS_Situacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 151, 169, -1));
+        cbcOS_Situacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Na Bancada", "Entrega OK", "Aguardando Entrega", "Aguardando Aprovação", "Aguardando Peças", "Abandonado Pelo Cliente", "Orçamento Reprovado", "Orçamento Aprovado", "Retornou", "Irreparável" }));
+        getContentPane().add(cbcOS_Situacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 151, 160, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Cliente"));
         jPanel2.setMaximumSize(new java.awt.Dimension(370, 164));
@@ -441,6 +441,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
         jtfOSValor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         getContentPane().add(jtfOSValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 336, 160, -1));
 
+        cbcOS_Tecnico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cbcOS_Tecnico.setToolTipText("Usuário");
         cbcOS_Tecnico.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -458,8 +459,8 @@ public class TelaOS extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 303, -1, -1));
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setText("Técnico:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 339, -1, -1));
+        jLabel11.setText("* Técnico:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 339, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -515,6 +516,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOS_Imprimir.setMaximumSize(new java.awt.Dimension(80, 80));
         btnOS_Imprimir.setMinimumSize(new java.awt.Dimension(80, 80));
         btnOS_Imprimir.setPreferredSize(new java.awt.Dimension(80, 80));
+        btnOS_Imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOS_ImprimirActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnOS_Imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 389, -1, -1));
 
         btnOS_Deletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/os_delete_icon.png"))); // NOI18N
@@ -524,6 +530,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         btnOS_Deletar.setMaximumSize(new java.awt.Dimension(80, 80));
         btnOS_Deletar.setMinimumSize(new java.awt.Dimension(80, 80));
         btnOS_Deletar.setPreferredSize(new java.awt.Dimension(80, 80));
+        btnOS_Deletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOS_DeletarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnOS_Deletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 389, -1, -1));
 
         jtfOSClienteCliente.setEditable(false);
@@ -615,6 +626,18 @@ public class TelaOS extends javax.swing.JInternalFrame {
             Logger.getLogger(TelaOS.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnOS_AlterarActionPerformed
+
+    private void btnOS_DeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOS_DeletarActionPerformed
+        try {
+            this.controller.deletarOS();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaOS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnOS_DeletarActionPerformed
+
+    private void btnOS_ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOS_ImprimirActionPerformed
+        this.controller.imprimirOS();
+    }//GEN-LAST:event_btnOS_ImprimirActionPerformed
 
     public JButton getBtnOS_Adicionar() {
         return btnOS_Adicionar;

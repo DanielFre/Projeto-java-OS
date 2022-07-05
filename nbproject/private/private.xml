@@ -4,12 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/controller/helper/TelaOSHelper.java</file>
-            <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/model/DAO/OS_OrdemServicoDAO.java</file>
-            <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/controller/TelaOSController.java</file>
-            <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/model/OS_OrdemServico.java</file>
-            <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/model/DAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/controller/MenuPrincipalController.java</file>
+            <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/view/MenuPrincipal.java</file>
+            <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/controller/TelaUsuarioController.java</file>
+            <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/controller/helper/TelaClienteHelper.java</file>
             <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/model/DAO/ClienteDAO.java</file>
-            <file>file:/C:/Users/daniel.frey/Documents/GitHub/prj-InfoX-OS/src/br/com/infox/view/TelaOS.java</file>
         </group>
     </open-files>
 </project-private>

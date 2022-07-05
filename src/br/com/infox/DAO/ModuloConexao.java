@@ -18,7 +18,7 @@ public class ModuloConexao {
     public static Connection getConnection() {;
         Connection conexao;
         try {
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbinfox", "root", "root");
+            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbinfox?characterEncoding=utf-8", "dba", "@infox123456");
             return conexao;
         } catch (SQLException ex) {
             Logger.getLogger(ModuloConexao.class.getName()).log(Level.SEVERE, null, ex);

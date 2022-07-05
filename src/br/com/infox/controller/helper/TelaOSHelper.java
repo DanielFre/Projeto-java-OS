@@ -11,8 +11,8 @@ import br.com.infox.model.Usuario;
 import br.com.infox.view.TelaOS;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -38,8 +38,9 @@ public class TelaOSHelper {
         view.getJtfOSServico().setText("");
         view.getJtfOSValor().setText("0,00");
         view.getJtfOSid().setText("0");
-        view.getCbcOS_Tecnico().setSelectedItem(1);
-        view.getCbcOS_Situacao().setSelectedItem(1);
+        view.getCbcOS_Tecnico().setSelectedItem(" ");
+        view.getCbcOS_Situacao().setSelectedItem(" ");
+        view.getJtfOSTecnicoID().setText("0");
 
     }
 
@@ -97,11 +98,19 @@ public class TelaOSHelper {
         String valorOS = view.getJtfOSValor().getText().replace(",", ".");
         float valor = Float.parseFloat(valorOS);
         int id_cliente = Integer.parseInt(view.getJtfOSClienteID().getText());
-        int id_usuario_tecnico = Integer.parseInt(view.getJtfOSTecnicoID().getText());
+
+        int id_usuario_tecnico = 0;
+
+        String aux_tecnico = view.getJtfOSTecnicoID().getText();
+        if (!aux_tecnico.equals(" ") && !aux_tecnico.equals("")) {
+            id_usuario_tecnico = Integer.parseInt(view.getJtfOSTecnicoID().getText());
+        } else {
+            view.getJtfOSTecnicoID().setText("0");
+        }
 
         String situacao = (String) view.getCbcOS_Situacao().getSelectedItem();
 
-        if (id_cliente > 0 && id_usuario_tecnico > 0 && !equipamento.equals("") && equipamento != null && !defeito.equals("") && defeito != null) {
+        if (!situacao.equals(" ") && id_cliente > 0 && id_usuario_tecnico > 0 && !equipamento.equals("") && equipamento != null && !defeito.equals("") && defeito != null) {
             OS_OrdemServico os = new OS_OrdemServico(equipamento, defeito, servico, valor, id_cliente, id_usuario_tecnico, tipo, situacao);
 
             return os;
@@ -164,11 +173,19 @@ public class TelaOSHelper {
         String valorOS = view.getJtfOSValor().getText().replace(",", ".");
         float valor = Float.parseFloat(valorOS);
         int id_cliente = Integer.parseInt(view.getJtfOSClienteID().getText());
-        int id_usuario_tecnico = Integer.parseInt(view.getJtfOSTecnicoID().getText());
+
+        int id_usuario_tecnico = 0;
+        String aux_tecnico = view.getJtfOSTecnicoID().getText();
+        if (!aux_tecnico.equals(" ") && !aux_tecnico.equals("")) {
+            id_usuario_tecnico = Integer.parseInt(view.getJtfOSTecnicoID().getText());
+        } else {
+            view.getJtfOSTecnicoID().setText("0");
+        }
+
         int idOS = Integer.parseInt(view.getJtfOSid().getText());
         String situacao = (String) view.getCbcOS_Situacao().getSelectedItem();
 
-        if (id_cliente > 0 && id_usuario_tecnico > 0 && !equipamento.equals("") && equipamento != null && !defeito.equals("") && defeito != null) {
+        if (!situacao.equals(" ") && id_cliente > 0 && id_usuario_tecnico > 0 && !equipamento.equals("") && equipamento != null && !defeito.equals("") && defeito != null) {
             OS_OrdemServico os = new OS_OrdemServico(idOS, equipamento, defeito, servico, valor, id_cliente, id_usuario_tecnico, tipo, situacao);
 
             return os;
