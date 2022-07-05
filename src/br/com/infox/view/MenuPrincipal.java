@@ -1,21 +1,40 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2022 Daniel Frey.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package br.com.infox.view;
 
 import br.com.infox.controller.MenuPrincipalController;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 
 /**
  *
- * @author daniel.frey
+ * @author Daniel Frey
+ * @version 1.0.0
  */
 public class MenuPrincipal extends javax.swing.JFrame {
- private MenuPrincipalController controller;
+
+    private MenuPrincipalController controller;
+
     /**
      * Creates new form MenuPrincipal
      */
@@ -198,11 +217,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-       this.controller.carregarDataAtual();
+        this.controller.carregarDataAtual();
     }//GEN-LAST:event_formWindowActivated
 
     private void menuOpcoesSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOpcoesSairActionPerformed
-       this.controller.sairDoSistema();        
+        this.controller.sairDoSistema();
     }//GEN-LAST:event_menuOpcoesSairActionPerformed
 
     private void menuAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAjudaSobreActionPerformed
@@ -210,11 +229,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuAjudaSobreActionPerformed
 
     private void menuCadastroUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroUsuariosActionPerformed
-      this.controller.cadastroUsuarios();
+        this.controller.cadastroUsuarios();
     }//GEN-LAST:event_menuCadastroUsuariosActionPerformed
 
     private void menuCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroClientesActionPerformed
-       this.controller.cadastroClientes();
+        this.controller.cadastroClientes();
     }//GEN-LAST:event_menuCadastroClientesActionPerformed
 
     private void menuCadastroOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroOSActionPerformed
@@ -222,11 +241,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCadastroOSActionPerformed
 
     private void menuRelatorioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioClientesActionPerformed
-       this.controller.relatorioDeClientes();
+        this.controller.relatorioDeClientes();
     }//GEN-LAST:event_menuRelatorioClientesActionPerformed
 
     private void menuRelatorioServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioServicosActionPerformed
-         this.controller.relatorioDeServicos();
+        this.controller.relatorioDeServicos();
     }//GEN-LAST:event_menuRelatorioServicosActionPerformed
 
     /**
@@ -278,8 +297,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     public void setLbTextoUsuario(JLabel lbTextoUsuario) {
         this.lbTextoUsuario = lbTextoUsuario;
-    }    
-    
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuBar;
     public static javax.swing.JDesktopPane desktopPanel;
